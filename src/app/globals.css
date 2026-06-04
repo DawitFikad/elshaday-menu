@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0f0f0f;
+  --color-foreground: #f8f8f2;
+  --color-gold: #d4af37;
+  --color-ivory: #fffff0;
+  --color-burgundy: #800020;
+  --color-charcoal: #36454f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--color-foreground);
+    background: var(--color-background);
+    font-family: 'Lato', sans-serif;
+    min-width: 320px;
+  }
+  
+  /* Mobile-first base styles */
+  h1 { @apply text-2xl font-black; }
+  h2 { @apply text-xl font-black; }
+  h3 { @apply text-lg font-bold; }
+  p { @apply text-sm; }
+
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .font-sans { font-family: 'Lato', sans-serif; }
+}
+
+@layer utilities {
+  .glass {
+    background-color: rgb(15 15 15 / 0.8);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgb(212 175 55 / 0.3);
+  }
+  
+  .glass-dark {
+    background-color: rgb(15 23 42 / 0.4);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgb(255 255 255 / 0.1);
+  }
+  
+  .text-gradient {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(
+      to right,
+      var(--color-gold),
+      #f4e87c,
+      var(--color-gold)
+    );
+    background-size: 200% auto;
+    animation: textGradient 4s linear infinite;
+  }
+  
+  .gold-accent {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+  
+  .luxury-shadow {
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1), 0 0 20px rgba(212, 175, 55, 0.05);
+  }
+  
+  .parallax {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Mobile-specific utilities */
+  .mobile-touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .mobile-grid {
+    @apply grid grid-cols-1 gap-4;
+  }
+  
+  .mobile-container {
+    @apply px-4 py-6;
+  }
+  
+  .animated-separator {
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    height: 1px;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes textGradient {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f4e87c;
+}
